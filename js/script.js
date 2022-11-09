@@ -129,16 +129,45 @@ const arrIcon = [
 	}
 ];
 
-const eleIconContainer = document.querySelector('.icon-container')
+const eleIconContainer = document.querySelector('.icon-container');
+const arrAnimal = [], arrVegetable = [], arrUser = [];
+
 
 for (let i = 0; i < arrIcon.length; i++) {
 	const objIcon = arrIcon[i];
+    const eleCard = document.createElement('div');
 	const eleIcon = document.createElement('div');
     const eleText = document.createElement('h2');
+    eleCard.classList.add('card')
+    eleCard.classList.add(`${objIcon.type}`)
 	eleIcon.classList.add('box-icon'); 
 	eleIcon.innerHTML = `<i class="${objIcon.family} ${objIcon.prefix}${objIcon.name}"></i>`;
-    eleText.innerHTML =`${objIcon.name}` ;
-	eleIconContainer.append(eleIcon);
+    eleText.innerHTML =`${objIcon.name}`;
     eleIcon.style.color = `${objIcon.color}`;
-    eleIcon.append(eleText);
+    eleIconContainer.append(eleCard);
+	eleCard.append(eleIcon);
+    eleCard.append(eleText);
 }
+
+arrIcon.forEach(objIcon => {
+	switch (objIcon.type) {
+		case 'animal':
+			arrAnimal.push(objIcon);
+			break;
+		case 'vegetable':
+			arrVegetable.push(objIcon);
+			break;
+		default:
+			arrUser.push(objIcon);
+			break;
+	}
+})
+console.table(arrAnimal);
+console.table(arrVegetable);
+console.table(arrUser);
+
+function serachIcon() {
+   let search = document.getElementById("tipo").value
+    return search
+}
+console.log(search)
