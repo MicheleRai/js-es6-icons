@@ -186,18 +186,22 @@ function searchIcon() {
         animal.classList.remove('none')
         vegetable.classList.add('none')
         user.classList.add('none')
-    }else if (seleValue == vegetable) {
-        vegetable.classList.remove('none')
-        animal.classList.add('none')
-        user.classList.add('none')
-    }else if  (seleValue == user) {
-        user.classList.remove('none')
-        vegetable.classList.add('none')
-        animal.classList.add('none')
-    } else {
-        animal.classList.remove('none')
-        vegetable.classList.remove('none')
-        user.classList.remove('none')
+     }else if (seleValue == vegetable) {
+            vegetable.classList.remove('none')
+            animal.classList.add('none')
+            user.classList.add('none')
+        }else if  (seleValue == user) {
+                user.classList.remove('none')
+                vegetable.classList.add('none')
+                animal.classList.add('none')
+            } else {
+                    animal.classList.remove('none')
+                    vegetable.classList.remove('none')
+                    user.classList.remove('none')
     } 
 }
-searchIcon()
+const eleBtnSearch = document.querySelector('#btn-search');
+
+eleBtnSearch.addEventListener('click', function() {
+    searchIcon()
+});
