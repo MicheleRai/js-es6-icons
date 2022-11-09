@@ -134,10 +134,11 @@ const eleIconContainer = document.querySelector('.icon-container')
 for (let i = 0; i < arrIcon.length; i++) {
 	const objIcon = arrIcon[i];
 	const eleIcon = document.createElement('div');
+    const eleText = document.createElement('h2');
 	eleIcon.classList.add('box-icon'); 
-	eleIcon.innerHTML = `
-        <i class="${objIcon.family} ${objIcon.prefix}${objIcon.name}"></i>
-		<h2>${objIcon.name}</h2>
-	`;
+	eleIcon.innerHTML = `<i class="${objIcon.family} ${objIcon.prefix}${objIcon.name}"></i>`;
+    eleText.innerHTML =`${objIcon.name}` ;
 	eleIconContainer.append(eleIcon);
+    eleIcon.style.color = `${objIcon.color}`;
+    eleIcon.append(eleText);
 }
