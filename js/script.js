@@ -166,8 +166,17 @@ console.table(arrAnimal);
 console.table(arrVegetable);
 console.table(arrUser);
 
-function serachIcon() {
-   let search = document.getElementById("tipo").value
-    return search
+
+// let ser = document.getElementById("tipo")
+// function serachIcon() {
+//     let searchI = ser.value;
+//     console.log(searchI);
+// }
+// ser.serachicon = serachIcon;
+// serachIcon()
+
+function searchIcon() {
+    selectElement = document.querySelector('#tipo');
+    seleValue = selectElement.value;
+    console.log('seleValue');
 }
-console.log(search)

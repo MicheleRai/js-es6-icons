@@ -17,6 +17,9 @@ nav{
     justify-content: center;
     align-items: center;
 }
+form{
+    display: inline-block;
+}
 .icon-container{
     display: flex;
     justify-content: space-around;
