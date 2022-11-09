@@ -175,33 +175,33 @@ console.table(arrUser);
 // ser.serachicon = serachIcon;
 // serachIcon()
 
-function searchIcon() {
+/*function searchIcon() {
     selectElement = document.querySelector('#tipo');
     seleValue = selectElement.value;
     console.log(seleValue);
-    const animal = document.querySelector('.animal')
-    const vegetable = document.querySelector('.vegetable')
-    const user = document.querySelector('.user')
+    const animal = document.querySelectorAll('.animal')
+    const vegetable = document.querySelectorAll('.vegetable')
+    const user = document.querySelectorAll('.user')
     if (seleValue == animal) {
         animal.classList.remove('none')
         vegetable.classList.add('none')
         user.classList.add('none')
-     }else if (seleValue == vegetable) {
-            vegetable.classList.remove('none')
-            animal.classList.add('none')
-            user.classList.add('none')
-        }else if  (seleValue == user) {
-                user.classList.remove('none')
-                vegetable.classList.add('none')
-                animal.classList.add('none')
-            } else {
-                    animal.classList.remove('none')
-                    vegetable.classList.remove('none')
-                    user.classList.remove('none')
+    }else if (seleValue == vegetable) {
+        vegetable.classList.remove('none')
+        animal.classList.add('none')
+        user.classList.add('none')
+    }else if  (seleValue == user) {
+        user.classList.remove('none')
+        vegetable.classList.add('none')
+        animal.classList.add('none')
+    } else {
+        animal.classList.remove('none')
+        vegetable.classList.remove('none')
+        user.classList.remove('none')
     } 
 }
 const eleBtnSearch = document.querySelector('#btn-search');
 
 eleBtnSearch.addEventListener('click', function() {
     searchIcon()
-});
+});*/
