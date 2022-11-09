@@ -178,5 +178,11 @@ console.table(arrUser);
 function searchIcon() {
     selectElement = document.querySelector('#tipo');
     seleValue = selectElement.value;
-    console.log('seleValue');
+    console.log(seleValue);
+    const animal = document.querySelector('.animal')
+    const vegetable = document.querySelector('.vegetable')
+    const user = document.querySelector('.user')
+    if (seleValue == animal) {
+
+    }
 }
