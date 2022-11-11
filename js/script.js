@@ -14,7 +14,7 @@ Dopodiché, basandoci sul codice di riferimento nel sito di Font Awesome, analiz
 Come possiamo usare i dati presenti nella nostra struttura dati per creare l'elemento html nel modo corretto e visualizzare l'icona in pagina?
 Inizialmente può essere sufficiente stampare dei semplici div, senza alcuno stile, con all'interno l'icona e uno span con il nome. Solamente quando la parte logica è completa, ci dedichiamo al css.*/
 
-const arrIcon = [
+const arrIcons = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
@@ -129,42 +129,42 @@ const arrIcon = [
 	}
 ];
 
-const eleIconContainer = document.querySelector('.icon-container');
-const arrAnimal = [], arrVegetable = [], arrUser = [];
+// const eleIconContainer = document.querySelector('.icon-container');
+// const arrAnimal = [], arrVegetable = [], arrUser = [];
 
 
-for (let i = 0; i < arrIcon.length; i++) {
-	const objIcon = arrIcon[i];
-    const eleCard = document.createElement('div');
-	const eleIcon = document.createElement('div');
-    const eleText = document.createElement('h2');
-    eleCard.classList.add('card')
-    eleCard.classList.add(`${objIcon.type}`)
-	eleIcon.classList.add('box-icon'); 
-	eleIcon.innerHTML = `<i class="${objIcon.family} ${objIcon.prefix}${objIcon.name}"></i>`;
-    eleText.innerHTML =`${objIcon.name}`;
-    eleIcon.style.color = `${objIcon.color}`;
-    eleIconContainer.append(eleCard);
-	eleCard.append(eleIcon);
-    eleCard.append(eleText);
-}
+// for (let i = 0; i < arrIcon.length; i++) {
+// 	const objIcon = arrIcon[i];
+//     const eleCard = document.createElement('div');
+// 	const eleIcon = document.createElement('div');
+//     const eleText = document.createElement('h2');
+//     eleCard.classList.add('card')
+//     eleCard.classList.add(`${objIcon.type}`)
+// 	eleIcon.classList.add('box-icon'); 
+// 	eleIcon.innerHTML = `<i class="${objIcon.family} ${objIcon.prefix}${objIcon.name}"></i>`;
+//     eleText.innerHTML =`${objIcon.name}`;
+//     eleIcon.style.color = `${objIcon.color}`;
+//     eleIconContainer.append(eleCard);
+// 	eleCard.append(eleIcon);
+//     eleCard.append(eleText);
+// }
 
-arrIcon.forEach(objIcon => {
-	switch (objIcon.type) {
-		case 'animal':
-			arrAnimal.push(objIcon);
-			break;
-		case 'vegetable':
-			arrVegetable.push(objIcon);
-			break;
-		default:
-			arrUser.push(objIcon);
-			break;
-	}
-})
-console.table(arrAnimal);
-console.table(arrVegetable);
-console.table(arrUser);
+// arrIcon.forEach(objIcon => {
+// 	switch (objIcon.type) {
+// 		case 'animal':
+// 			arrAnimal.push(objIcon);
+// 			break;
+// 		case 'vegetable':
+// 			arrVegetable.push(objIcon);
+// 			break;
+// 		default:
+// 			arrUser.push(objIcon);
+// 			break;
+// 	}
+// })
+// console.table(arrAnimal);
+// console.table(arrVegetable);
+// console.table(arrUser);
 
 
 // let ser = document.getElementById("tipo")
@@ -205,3 +205,69 @@ const eleBtnSearch = document.querySelector('#btn-search');
 eleBtnSearch.addEventListener('click', function() {
     searchIcon()
 });*/
+
+const eleIconsContainer = document.querySelector('#icons-container');
+const eleSelect = document.querySelector('#type-filter');
+
+function filterIcons() {
+	const selectedType = this.value; 
+
+	if (selectedType !== '') {
+		arrIconsFiltered = arrIcons.filter(objIcon => objIcon.type === selectedType)
+	} else {
+		arrIconsFiltered = arrIcons;
+	}
+	console.log(arrIconsFiltered);
+
+	renderIcons(arrIconsFiltered, eleIconsContainer);
+}
+
+function populateSelect(arrData, eleSelect) {
+	const arrTypes = [];
+	arrData.forEach(objIcon => arrTypes.includes(objIcon.type) ? '' : arrTypes.push(objIcon.type));
+
+	console.log(arrTypes);
+
+	arrTypes.forEach(type => eleSelect.innerHTML += `<option value="${type}">${type}</option>`);
+}
+
+populateSelect(arrIcons, eleSelect);
+
+function getRandomInteger(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function getRandomColor() {
+	const acceptableChars = '0123456789ABCDEF';
+	let color = '#'
+	for (let i = 0; i < 6; i++) {
+		color += acceptableChars[getRandomInteger(0, 15)];
+	}
+	return color;
+}
+
+function randomizeColors(arrIcons) {
+	arrIcons.forEach(objIcon => objIcon.color = getRandomColor());
+}
+
+randomizeColors(arrIcons);
+
+function generateCard(objData) {
+	return `
+		<div class="box">
+			<i class="${objData.family} ${objData.prefix}${objData.name}" style="color:${objData.color}"></i>
+			<div class="title">${objData.name}</div>
+		</div>
+	`;
+}
+
+function renderIcons(arrData, eleContainer) {
+	eleContainer.innerHTML = '';
+	arrData.forEach(objIcon => eleContainer.innerHTML += generateCard(objIcon));
+}
+
+renderIcons(arrIcons, eleIconsContainer);
+
+
+eleSelect.addEventListener('change', filterIcons);
+
